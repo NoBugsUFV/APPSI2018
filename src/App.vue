@@ -1,7 +1,14 @@
 <template>
   <v-app ref='app'>
     <v-navigation-drawer fixed :clipped='false' v-model="left" app >
-      Opa
+      <v-list-tile avatar v-for="item in items" v-bind:key="item.title" @click="">
+        <v-list-tile-action>
+          <v-icon v-if="item.icon" color="pink">{{ item.icon }}</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title v-text="item.title"></v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
     </v-navigation-drawer>
     <MainToolbar/>
     <v-content>
@@ -35,8 +42,12 @@ export default {
       clipped: false,
       items: [
         {
-          icon: "bubble_chart",
-          title: "Inspire"
+          icon: "event",
+          title: "Programação"
+        },
+        {
+          icon: "help",
+          title: "Q&A"
         }
       ],
       miniVariant: true,

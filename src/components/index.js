@@ -1,4 +1,5 @@
 import MainToolbar from './navigation/MainToolbar'
 import HelloWorld from './HelloWorld'
+import QandA from './QandA'
 
-export { MainToolbar, HelloWorld }
+export { MainToolbar, HelloWorld, QandA }

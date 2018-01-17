@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { HelloWorld, QandA } from '../components/'
+import { HelloWorld, QandA, Prog } from '../components/'
 
 Vue.use(Router)
 
@@ -15,6 +15,11 @@ export default new Router({
       path: '/QandA',
       name: 'QandA',
       component: QandA
+    },
+    {
+      path: '/Prog',
+      name: 'Prog',
+      component: Prog
     }
   ]
 })

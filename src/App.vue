@@ -1,7 +1,7 @@
 <template>
   <v-app ref='app'>
     <v-navigation-drawer fixed :clipped='false' v-model="left" app >
-      Opa
+      
     </v-navigation-drawer>
     <MainToolbar/>
     <v-content>

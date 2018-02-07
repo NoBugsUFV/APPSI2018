@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     left(){
-      toggleLeft(this.$store,true)
+      toggleLeft(this.$store)
     }
   }
 };

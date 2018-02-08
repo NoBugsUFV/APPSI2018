@@ -51,6 +51,11 @@ export default {
           icon: "help",
           title: "Q&A",
           route: "/QandA"
+        },
+        {
+          icon: "face",
+          title: "Login",
+          route: "/Login"
         }
       ],
       miniVariant: true,

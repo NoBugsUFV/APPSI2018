@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { HelloWorld, QandA, Prog } from '../components/'
+import { HelloWorld, QandA, Prog } from '@/components/'
 
 Vue.use(Router)
 

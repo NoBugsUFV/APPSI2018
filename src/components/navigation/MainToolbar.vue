@@ -1,7 +1,7 @@
 <template>
 <v-toolbar fixed app color='primary'>
       <v-toolbar-side-icon @click="left"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+      <v-toolbar-title v-text="title" class="title"></v-toolbar-title>
 </v-toolbar>
 </template>
 
@@ -26,5 +26,7 @@ export default {
 </script>
 
 <style>
-
+.title, .toolbar__side-icon.btn.btn--icon {
+  color: white;
+}
 </style>

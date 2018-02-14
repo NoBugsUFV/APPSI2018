@@ -21,6 +21,7 @@ import {
   VTextField
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 
 import App from './App'
 import router from './router'

@@ -1,22 +1,13 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <h2>Nos acompanhe nas redes sociais</h2>
+    <v-list-tile v-for="item in items" v-bind:key="item.title">
+      <v-list-tile-action>
+        <v-icon v-if="item.icon" color="pink">{{ item.icon }}</v-icon>
+        <a :href="item.link" target="_blank">{{ item.title }}</a>
+      </v-list-tile-action>
+    </v-list-tile>
   </div>
 </template>
 
@@ -25,7 +16,29 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Bem vindo à XXIII Semana de Informática',
+      items:[
+        {
+          icon: "face",
+          link: "https://facebook.com/SemanaDeInformaticaUfv",
+          title: "Facebook"
+        },
+        {
+          icon: "book",
+          link: "https://twitter.com/SemanaInfo_UFV",
+          title: "Twitter"
+        },
+        {
+          icon: "videocam",
+          link: "https://instagram.com/semanainfoufv",
+          title: "Instagram"
+        },
+        {
+          icon: "web",
+          link: "https://semanainfo.nobugs.com.br",
+          title: "Site"
+        },
+      ]
     }
   }
 }
@@ -45,6 +58,6 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color: #E91E63;
 }
 </style>

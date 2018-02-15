@@ -17,9 +17,11 @@ import {
   transitions,
   VExpansionPanel,
   VCard,
-  VTabs
+  VTabs,
+  VTextField
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 
 import App from './App'
 import router from './router'
@@ -40,7 +42,8 @@ Vue.use(Vuetify, {
     transitions,
     VExpansionPanel,
     VCard,
-    VTabs
+    VTabs,
+    VTextField
   },
   theme: {
     primary: '#ffa8c8',

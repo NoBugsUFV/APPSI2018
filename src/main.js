@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
+import Icon from 'vue-awesome/components/Icon'
 
 import {
   Vuetify,
@@ -31,6 +32,7 @@ Vue.use(Vuetify, {
   Vuex,
   VueRouter,
   components: {
+    Icon,
     VApp,
     VNavigationDrawer,
     VFooter,

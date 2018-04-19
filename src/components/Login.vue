@@ -22,24 +22,31 @@
     <v-btn color="secondary">Cadastrar</v-btn>
   </v-form>
 </template>
+
 <script>
-  export default {
-    name:'Login',
-    data () {
-      return {
-        valid: false,
-        name: '',
-        nameRules: [
-          (v) => !!v || 'É necessário um nome de usuário',
-          (v) => v.length <= 10 || 'Deve ser menor que 10 caracteres'
-        ],
-        passRules: [
-          (v) => !!v || 'É necessário uma senha',
-          (v) => v.length >= 5 || 'Deve ser maior que 5 caracteres'
-        ],
-        password: '',
-        eye: true
-      }
-    }
+
+import { VForm } from 'vuetify'
+
+export default {
+  name: "Login",
+  components:{
+    VForm
+  },
+  data() {
+    return {
+      valid: false,
+      name: "",
+      nameRules: [
+        v => !!v || "É necessário um nome de usuário",
+        v => v.length <= 10 || "Deve ser menor que 10 caracteres"
+      ],
+      passRules: [
+        v => !!v || "É necessário uma senha",
+        v => v.length >= 5 || "Deve ser maior que 5 caracteres"
+      ],
+      password: "",
+      eye: true
+    };
   }
+};
 </script>

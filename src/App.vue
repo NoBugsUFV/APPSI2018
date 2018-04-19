@@ -15,14 +15,18 @@
 </template>
 
 <script>
+
 import { MainToolbar, SideBar } from "./components";
 import { storeLayout, toggleLeft } from "./store/actions";
+import { VNavigationDrawer, VFooter } from 'vuetify'
 
 export default {
   name: "App",
   components: {
     MainToolbar,
-    SideBar
+    SideBar,
+    VNavigationDrawer,
+    VFooter
   },
   methods: {
   },

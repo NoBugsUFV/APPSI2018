@@ -3,60 +3,56 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
-import Icon from 'vue-awesome/components/Icon'
 
 import {
   Vuetify,
   VApp,
-  VNavigationDrawer,
-  VFooter,
   VList,
   VBtn,
   VIcon,
   VGrid,
-  VToolbar,
   transitions,
-  VExpansionPanel,
   VCard,
+  VTextField,
+  VToolbar,
   VTabs,
-  VTextField
+  VExpansionPanel
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+import 'vuetify/dist/vuetify.min.css'
+
+import fontawesome from '@fortawesome/fontawesome'
 
 import App from './App'
 import router from './router'
 import store from './store'
 
-Vue.use(Vuetify, {
-  Vuex,
-  VueRouter,
-  components: {
-    Icon,
-    VApp,
-    VNavigationDrawer,
-    VFooter,
-    VList,
-    VBtn,
-    VIcon,
-    VGrid,
-    VToolbar,
-    transitions,
-    VExpansionPanel,
-    VCard,
-    VTabs,
-    VTextField
-  },
-  theme: {
-    primary: '#ffa8c8',
-    secondary: '#424242',
-    accent: '#82B1FF',
-    error: '#FF5252',
-    info: '#2196F3',
-    success: '#4CAF50',
-    warning: '#FFC107'
-  }
-})
+Vue.use(fontawesome)
+
+Vue.use( Vuetify, {
+    components: {
+      VApp,
+      VList,
+      VBtn,
+      VIcon,
+      VGrid,
+      transitions,
+      VCard,
+      VTextField,
+      VToolbar,
+      VTabs,
+      VExpansionPanel
+    },
+    theme: {
+      primary: '#ffa8c8',
+      secondary: '#424242',
+      accent: '#82B1FF',
+      error: '#FF5252',
+      info: '#2196F3',
+      success: '#4CAF50',
+      warning: '#FFC107'
+    }
+  })
 
 Vue.config.productionTip = false
 

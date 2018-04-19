@@ -32,8 +32,14 @@
 </template>
 
 <script>
+
+import { VTabs } from 'vuetify'
+
 export default {
   name: 'Prog',
+  components: {
+    VTabs
+  },
   data () {
       return {
         tabs: ['tab-1', 'tab-2', 'tab-3', 'tab-4'],

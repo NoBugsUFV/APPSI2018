@@ -18,8 +18,8 @@
       counter
       required
     ></v-text-field>
-    <v-btn color="primary">Entrar</v-btn>
-    <v-btn color="secondary">Cadastrar</v-btn>
+    <router-link to='/'><v-btn color="primary">Entrar</v-btn></router-link>
+    <router-link to='/user/register'><v-btn color="primary">Cadastrar</v-btn></router-link>
   </v-form>
 </template>
 

@@ -11,12 +11,11 @@
                 readonly></v-text-field>
                 <v-date-picker locale='pt-br' ref="picker" v-model="birthday" :max="new Date().toISOString().substr(0, 10)"
                     min="1950-01-01"
-                    @change="save"
                 ></v-date-picker>
             </v-menu>
             <v-text-field v-model='pass' label="Sua senha"></v-text-field>
             <v-text-field v-model="confirmPass" label="Confirme sua senha"></v-text-field>
-            <v-btn>Cadastrar</v-btn>
+            <v-btn color='primary'>Cadastrar</v-btn>
         </v-form>
     </div>
 </template>
@@ -33,7 +32,8 @@ export default {
       email: "",
       birthday: "",
       pass: "",
-      confirmPass: ""
+      confirmPass: "",
+      menu: {}
     };
   },
   components: {

@@ -1,7 +1,6 @@
 <template>
     <div class='container'>
-        <router-link :to="{ name: 'Home2', params: { id: 213, novo: 213 }}">Rota diferente</router-link>
-        {{items}}
+        Nada aqui
     </div>
 </template>
 

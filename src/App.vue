@@ -16,7 +16,7 @@
 
 <script>
 
-import { MainToolbar, SideBar } from "./components";
+import { MainToolbar, SideBar } from "@/components";
 import { storeLayout, toggleLeft } from "./store/actions";
 import { VNavigationDrawer, VFooter } from 'vuetify'
 

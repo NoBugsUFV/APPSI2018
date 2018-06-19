@@ -24,17 +24,17 @@ export default {
         {
           icon: "event",
           title: "Programação",
-          route: "/Prog"
+          route: "/prog"
         },
         {
           icon: "help",
           title: "Q&A",
-          route: "/QandA"
+          route: "/faq"
         },
         {
           icon: "face",
           title: "Login",
-          route: "/Login"
+          route: "/login"
         }
       ]
     };

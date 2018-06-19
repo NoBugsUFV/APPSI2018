@@ -28,7 +28,7 @@ export default {
         },
         {
           icon: "help",
-          title: "Q&A",
+          title: "Perguntas frequentes",
           route: "/faq"
         },
         {

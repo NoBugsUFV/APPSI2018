@@ -15,3 +15,7 @@ export const toggleRight = ({
 }, value) => {
   commit('RIGHT_SIDE_BAR', value)
 }
+
+export const storeToken = ({ commit }, token) => {
+  commit('STORE_TOKEN', token)
+}

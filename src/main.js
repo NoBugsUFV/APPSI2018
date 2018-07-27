@@ -7,6 +7,7 @@ import VueRouter from 'vue-router'
 import {
   Vuetify,
   VApp,
+  VAlert,
   VList,
   VBtn,
   VIcon,
@@ -32,6 +33,7 @@ Vue.use(fontawesome)
 Vue.use( Vuetify, {
     components: {
       VApp,
+      VAlert,
       VList,
       VBtn,
       VIcon,

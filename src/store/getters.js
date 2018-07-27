@@ -4,6 +4,10 @@ const getters = {
     },
     GET_RIGHT(state) {
         return state.rightsidebar
+    },
+    GET_TOKEN(state)
+    {
+        return state.token;
     }
 }
 

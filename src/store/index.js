@@ -8,7 +8,8 @@ Vue.use(Vuex)
 
 var state = {
     leftSide: {},
-    rightSide: {}
+    rightSide: {},
+    token: ''
 }
 
 const store = new Vuex.Store({

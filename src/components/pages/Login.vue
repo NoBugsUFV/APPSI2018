@@ -1,13 +1,19 @@
 <template>
 	<v-form ref="form" v-model="valid">
 		<v-alert
-			v-model="alert"
+			v-model="erroMsg"
 			:value="false"
 			type="error"
 			color="error"
       dismissible
-		>{{ msgErr }}
+		>{{ msg }}
 		</v-alert>
+    <v-alert
+				v-model="okMsg"
+				:value="false"
+				type="success"
+			>{{ msg }}
+			</v-alert>
 		<v-text-field
 			label="E-mail"
 			v-model="email"
@@ -34,76 +40,84 @@
 </template>
 
 <script>
-import { VForm } from "vuetify";
-import axios from 'axios';
+import { VForm, VAlert } from "vuetify";
+import { storeToken } from "../../store/actions";
+import axios from "axios";
 
 export default {
   name: "Login",
   components: {
-    VForm
+    VForm,
+    VAlert
   },
   data() {
     return {
-			msgErr: 'Algo de errado não está certo',
+      msg: "Algo de errado não está certo",
       valid: true,
       email: "",
       emailRules: [
         v => !!v || "É necessário um endereco de email",
-        v => /.+@.+/.test(v) || 'E-mail inválido'
-			],
-			password: "",
+        v => /.+@.+/.test(v) || "E-mail inválido"
+      ],
+      password: "",
       passRules: [
         v => !!v || "É necessário uma senha",
         v => v.length >= 0 || "Deve ser maior que 5 caracteres"
-			],
-			alert: false,
-			token: '',
+      ],
+      erroMsg: false,
+      okMsg: false,
+      token: "",
       eye: true
     };
   },
   methods: {
-		submit () {
-        if (this.$refs.form.validate()) {
-          // Native form submission is not yet supported
-          axios.post('http://localhost:8000/api/login', {
-						email: this.email,
-						password: this.password
-					})
-					.then(response =>
-					{
-						//mudar quando mudar na api
-						if(response.data.success) //logged
-						{
-							//console.log(response.data.data.token);
-							this.$store.state.token = response.data.data.token;
-						}
-						else // not logged
-						{
-							this.msgErr = 'Erro de autenticação';
-							this.alert = true;
-						} 
-					})
-					.catch(err =>
-					{
-						if(err.response)
-						{
-							if(err.response.status == 401)
-							{
-								this.msgErr = 'Erro de autenticação';
-							}
-						}
-						else
-						{
-							this.msgErr = 'Internal error';
-							console.log(err);
-						}
-						this.alert = true;
-					});
-        }
-      },
-      clear () {
-        this.$refs.form.reset()
+    submit() {
+      if (this.$refs.form.validate()) {
+        // Native form submission is not yet supported
+        axios
+          .post("http://localhost:8000/api/login", {
+            email: this.email,
+            password: this.password
+          })
+          .then(response => {
+            //mudar quando mudar na api
+            if (response.data.success) {
+				this.msg = "Logado com Sucesso";
+				this.okMsg = true;
+				this.erroMsg = !this.okMsg;
+				//logged
+
+				// a partir daqui é igual no login
+				storeToken(this.$store, response.data.data.token);
+
+				setTimeout(() => {
+					// redireciona
+					this.$router.push('/');
+				}, 1000);
+            } else {
+              // not logged
+              this.msg = "Erro de autenticação";
+              this.erroMsg = true;
+              this.okMsg = !this.erroMsg;
+            }
+          })
+          .catch(err => {
+            if (err.response) {
+              if (err.response.status == 401) {
+                this.msg = "Erro de autenticação";
+              }
+            } else {
+              this.msg = "Internal error";
+              console.log(err);
+            }
+            this.erroMsg = true;
+            this.okMsg = !this.erroMsg;
+          });
       }
+    },
+    clear() {
+      this.$refs.form.reset();
+    }
   }
 };
 </script>

@@ -33,7 +33,7 @@
 		></v-text-field>
 		<v-btn
 			color="primary"
-			@click="submit"
+			@click="login"
 		>Entrar</v-btn>
 		<router-link to='/user/register'><v-btn color="primary">Cadastrar</v-btn></router-link>
 	</v-form>
@@ -42,82 +42,110 @@
 <script>
 import { VForm, VAlert } from "vuetify";
 import { storeToken } from "../../store/actions";
-import axios from "axios";
+import http from "../../http";
+import { setTimeout } from "timers";
 
 export default {
-  name: "Login",
-  components: {
-    VForm,
-    VAlert
-  },
-  data() {
-    return {
-      msg: "Algo de errado não está certo",
-      valid: true,
-      email: "",
-      emailRules: [
-        v => !!v || "É necessário um endereco de email",
-        v => /.+@.+/.test(v) || "E-mail inválido"
-      ],
-      password: "",
-      passRules: [
-        v => !!v || "É necessário uma senha",
-        v => v.length >= 0 || "Deve ser maior que 5 caracteres"
-      ],
-      erroMsg: false,
-      okMsg: false,
-      token: "",
-      eye: true
-    };
-  },
-  methods: {
-    submit() {
-      if (this.$refs.form.validate()) {
-        // Native form submission is not yet supported
-        axios
-          .post("http://localhost:8000/api/login", {
-            email: this.email,
-            password: this.password
-          })
-          .then(response => {
-            //mudar quando mudar na api
-            if (response.data.success) {
-				this.msg = "Logado com Sucesso";
-				this.okMsg = true;
-				this.erroMsg = !this.okMsg;
-				//logged
+	name: "Login",
+	components: {
+		VForm,
+		VAlert
+	},
+	data() {
+		return {
+			msg: "Algo de errado não está certo",
+			valid: true,
+			email: "",
+			emailRules: [
+				v => !!v || "É necessário um endereco de email",
+				v => /.+@.+/.test(v) || "E-mail inválido"
+			],
+			password: "",
+			passRules: [
+				v => !!v || "É necessário uma senha",
+				v => v.length >= 0 || "Deve ser maior que 5 caracteres"
+			],
+			erroMsg: false,
+			okMsg: false,
+			token: "",
+			eye: true,
 
-				// a partir daqui é igual no login
-				storeToken(this.$store, response.data.data.token);
 
-				setTimeout(() => {
-					// redireciona
-					this.$router.push('/');
-				}, 1000);
-            } else {
-              // not logged
-              this.msg = "Erro de autenticação";
-              this.erroMsg = true;
-              this.okMsg = !this.erroMsg;
-            }
-          })
-          .catch(err => {
-            if (err.response) {
-              if (err.response.status == 401) {
-                this.msg = "Erro de autenticação";
-              }
-            } else {
-              this.msg = "Internal error";
-              console.log(err);
-            }
-            this.erroMsg = true;
-            this.okMsg = !this.erroMsg;
-          });
-      }
-    },
-    clear() {
-      this.$refs.form.reset();
-    }
-  }
+			// Variaveis de requisição
+			error: false
+		};
+	},
+	methods: {
+		/*submit() {
+			if (this.$refs.form.validate()) {
+				// Native form submission is not yet supported
+				//console.log(http);
+				http
+				.post("login", {
+					email: this.email,
+					password: this.password
+				})
+				.then(response => {
+					//mudar quando mudar na api
+					if (response.data.success) {
+					this.msg = "Logado com Sucesso";
+					this.okMsg = true;
+					this.erroMsg = !this.okMsg;
+					//logged
+
+					// a partir daqui é igual no login
+					storeToken(this.$store, response.data.data.token);
+
+					setTimeout(() => {
+						// redireciona
+						this.$router.push("/prog");
+					}, 1000);
+					} else {
+					// not logged
+					this.msg = "Erro de autenticação";
+					this.erroMsg = true;
+					this.okMsg = !this.erroMsg;
+					}
+				})
+				.catch(err => {
+					if (err.response) {
+					if (err.response.status == 401) {
+						this.msg = "Erro de autenticação";
+					}
+					} else {
+					this.msg = "Internal error";
+					console.log(err);
+					}
+					this.erroMsg = true;
+					this.okMsg = !this.erroMsg;
+				});
+			}
+			},
+			clear() {
+			this.$refs.form.reset();
+		}*/
+
+		login(){
+
+			var app = this;
+
+			this.$auth.login({
+
+				params: {
+
+					email: app.email,
+					password: app.password
+				},
+				success: function(res) {
+					console.log(res);
+					console.log('loguei');
+				},
+				error: function() {},
+				rememberMe: true,
+				redirect: { name: 'home'}, //home
+				fetchUser: false
+			});
+		}
+	}
 };
 </script>

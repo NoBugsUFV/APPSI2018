@@ -27,12 +27,10 @@
 				></v-date-picker>
 			</v-menu>
 			<v-text-field v-model='pass' label="Sua senha"></v-text-field>
-			<v-text-field v-model="c_pass" l
-							
-abel="Confirme sua senha"></v-text-field>
+			<v-text-field v-model="c_pass" label="Confirme sua senha"></v-text-field>
 			<v-btn
 				color="primary"
-				@click="submit"
+				@click="register"
 			>Cadastrar</v-btn>
 		</v-form>
 	</div>
@@ -40,12 +38,12 @@ abel="Confirme sua senha"></v-text-field>
 
 <script>
 import { VForm, VDatePicker, VMenu, VAlert } from "vuetify";
-import { storeToken } from '../../../store/actions';
-import axios from "axios";
+import { storeToken } from '../../store/actions';
+import http from '../../http';
 import { setTimeout } from 'timers';
 
 export default {
-	name: "UserRegister",
+	name: "Register",
 	data() {
 		return {
 			form: true,
@@ -58,7 +56,13 @@ export default {
 			menu: {},
 			msg: "Algo de errado não está certo",
 			erroMsg: false,
-			okMsg: false
+			okMsg: false,
+
+
+			// variaveis de requisição
+			error: false,
+			errors: {},
+			success: false
 		};
 	},
 	components: {
@@ -68,14 +72,14 @@ export default {
 		VAlert
 	},
 	methods: {
-		submit() {
-			console.log('anytiyng');
-			if (true/*this.$refs.form.validate()*/) {
-				axios
-					.post("http://localhost:8000/api/register", {
+		/*submit() {
+			if (this.$refs.form.validate()) {
+				//console.log(http);
+				http
+					.post("register", {
 						nome: this.nome,
 						cpf: this.cpf,
-						/*birthday: ?,*/
+						//birthday: ?,
 						email: this.email,
 						password: this.pass,
 
@@ -99,7 +103,7 @@ export default {
 
 							setTimeout(() => {
 								// redireciona
-								this.$router.push('/');
+								this.$router.push('/prog');
 							}, 1000);
 
 						}
@@ -119,9 +123,36 @@ export default {
 						this.okMsg = !this.erroMsg;
 						console.log(err);
 					});
-				// </ axios
+				// </ http
 			} // </ if	
-    	} // </ submit
+		} // </ submit*/
+		
+		register() {
+			
+			let app = this;
+
+			this.$auth.register({
+				data: {
+
+					nome: app.nome,
+					cpf: app.cpf,
+					email: app.email,
+					password: app.pass,
+					tipo: 'user',
+					status: 1
+				},
+				success: function()
+				{
+					app.success = true;
+				},
+				error: function(resp)
+				{
+					app.error = true;
+					app.errors = resp.response.data.errors;
+				},
+				redirect: { name: 'login'} //? redirect to home
+			})
+		}
   	} // </ methods
 };
 </script>

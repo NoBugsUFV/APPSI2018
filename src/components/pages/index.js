@@ -3,6 +3,7 @@ import QandA from './QandA'
 import Prog from './Prog'
 import Login from './Login'
 import Admin from './Admin'
+import Register from './Register'
 
 export {
     MainToolbar,
@@ -11,5 +12,6 @@ export {
     QandA,
     Prog,
     Login,
-    Admin
+    Admin,
+    Register
 }

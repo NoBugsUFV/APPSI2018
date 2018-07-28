@@ -1,41 +1,56 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import { Home, QandA, Prog, Login, Admin } from '@/components/pages'
+import Vue from "vue";
+import Router from "vue-router";
+import { Home, QandA, Prog, Login, Admin, Register } from "@/components/pages";
 
-import UserRegister from '@/components/pages/User/Register.vue'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
-    routes: [{
-            path: '/',
-            component: Home
+	routes: [
+		{
+            path: "/",
+            name: 'home',
+			component: Home
+		},
+		{
+            path: "/faq",
+            name: 'faq',
+			component: QandA,
+			meta: {
+				auth: true
+			}
+		},
+		{
+            path: "/prog",
+            name: 'prog',
+			component: Prog,
+			meta: {
+				auth: false
+			}
+		},
+		{
+            path: "/login",
+            name: 'login',
+			component: Login,
+			meta: {
+				auth: false
+			}
+		},
+		{
+            path: "/admin",
+            name: 'admin',
+			component: Admin,
+			meta: {
+				auth: true
+			}
         },
         {
-            path: '/faq',
-            component: QandA
-        },
-        {
-            path: '/prog',
-            component: Prog
-        },
-        {
-            path: '/login',
-            component: Login
-        },
-        {
-            path: '/admin',
-            component: Admin
-        },
-        {
-            path: '/user',
-            component: { template: '<router-view></router-view>'},
-            children: [
-                {
-                    path: 'register',
-                    component: UserRegister
-                }
-            ]
-        }
-    ]
-})
+            path: "/register",
+            name: 'register',
+			component: Register,
+			meta: {
+				auth: false
+			}
+		}
+	]
+});

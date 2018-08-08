@@ -7,7 +7,12 @@ const mutations = {
   },
   RIGHT_SIDE_BAR(state) {
     state.layout.right = !state.layout.right
+  },
+  STORE_TOKEN(state, token) 
+  {
+    state.token = token;
   }
+
 }
 
 export default mutations

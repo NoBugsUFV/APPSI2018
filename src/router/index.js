@@ -2,51 +2,53 @@ import Vue from "vue";
 import Router from "vue-router";
 import { Home, QandA, Prog, Login, Admin, Register } from "@/components/pages";
 
-
 Vue.use(Router);
 
 export default new Router({
 	routes: [
 		{
-            path: "/",
-            name: 'home',
+			path: "/",
+			name: "home",
 			component: Home
 		},
 		{
-            path: "/faq",
-            name: 'faq',
+			path: "/faq",
+			name: "faq",
 			component: QandA,
 			meta: {
 				auth: true
 			}
 		},
 		{
-            path: "/prog",
-            name: 'prog',
+			path: "/prog",
+			name: "prog",
 			component: Prog,
 			meta: {
-				auth: false
+				auth: undefined
 			}
 		},
 		{
-            path: "/login",
-            name: 'login',
+			path: "/login",
+			name: "login",
 			component: Login,
 			meta: {
 				auth: false
 			}
 		},
 		{
-            path: "/admin",
-            name: 'admin',
+			path: "/admin",
+			name: "admin",
 			component: Admin,
 			meta: {
-				auth: true
+				auth: {
+					roles: "admin",
+					redirect: { name: "home" }
+				}
 			}
-        },
-        {
-            path: "/register",
-            name: 'register',
+		},
+		{
+			path: "/register",
+			name: "register",
 			component: Register,
 			meta: {
 				auth: false

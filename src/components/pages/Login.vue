@@ -46,37 +46,41 @@ import http from "../../http";
 import { setTimeout } from "timers";
 
 export default {
-	name: "Login",
-	components: {
-		VForm,
-		VAlert
-	},
-	data() {
-		return {
-			msg: "Algo de errado não está certo",
-			valid: true,
-			email: "",
-			emailRules: [
-				v => !!v || "É necessário um endereco de email",
-				v => /.+@.+/.test(v) || "E-mail inválido"
-			],
-			password: "",
-			passRules: [
-				v => !!v || "É necessário uma senha",
-				v => v.length >= 0 || "Deve ser maior que 5 caracteres"
-			],
-			erroMsg: false,
-			okMsg: false,
-			token: "",
-			eye: true,
+  name: "Login",
+  components: {
+    VForm,
+    VAlert
+  },
+  data() {
+    return {
+      msg: "Algo de errado não está certo",
+      valid: true,
+      email: "teste@teste.com",
+      emailRules: [
+        v => !!v || "É necessário um endereco de email",
+        v => /.+@.+/.test(v) || "E-mail inválido"
+      ],
+      password: "1234",
+      passRules: [
+        v => !!v || "É necessário uma senha",
+        v => v.length >= 0 || "Deve ser maior que 5 caracteres"
+      ],
+      erroMsg: false,
+      okMsg: false,
+      eye: true,
 
+      // Variaveis de requisição
+      error: false
+    };
+  },
 
-			// Variaveis de requisição
-			error: false
-		};
-	},
-	methods: {
-		/*submit() {
+  mounted() {
+    //console.log(this.$auth.redirect());
+    // Can set query parameter here for auth redirect or just do it silently in login redirect.
+  },
+
+  methods: {
+    /*submit() {
 			if (this.$refs.form.validate()) {
 				// Native form submission is not yet supported
 				//console.log(http);
@@ -125,27 +129,24 @@ export default {
 			this.$refs.form.reset();
 		}*/
 
-		login(){
+    login() {
+      //var redirect = this.$auth.redirect();
+      var app = this;
 
-			var app = this;
-
-			this.$auth.login({
-
-				params: {
-
-					email: app.email,
-					password: app.password
-				},
-				success: function(res) {
-					console.log(res);
-					console.log('loguei');
-				},
-				error: function() {},
-				rememberMe: true,
-				redirect: { name: 'home'}, //home
-				fetchUser: false
-			});
-		}
-	}
+      this.$auth.login({
+        body: {
+          email: app.email,
+          password: app.password
+        },
+        success: function(res) {
+          console.log(res);
+          console.log("loguei");
+        },
+        error: function() {},
+        rememberMe: true,
+        redirect: { name: "home" }
+      });
+    }
+  }
 };
 </script>

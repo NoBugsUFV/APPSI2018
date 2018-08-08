@@ -38,41 +38,40 @@
 
 <script>
 import { VForm, VDatePicker, VMenu, VAlert } from "vuetify";
-import { storeToken } from '../../store/actions';
-import http from '../../http';
-import { setTimeout } from 'timers';
+import { storeToken } from "../../store/actions";
+import http from "../../http";
+import { setTimeout } from "timers";
 
 export default {
-	name: "Register",
-	data() {
-		return {
-			form: true,
-			nome: "a",
-			cpf: "a",
-			email: "a",
-			birthday: "1999-03-06",
-			pass: "a",
-			c_pass: "a",
-			menu: {},
-			msg: "Algo de errado não está certo",
-			erroMsg: false,
-			okMsg: false,
+  name: "Register",
+  data() {
+    return {
+      form: true,
+      nome: "a",
+      cpf: "a",
+      email: "a",
+      birthday: "1999-03-06",
+      pass: "a",
+      c_pass: "a",
+      menu: {},
+      msg: "Algo de errado não está certo",
+      erroMsg: false,
+      okMsg: false,
 
-
-			// variaveis de requisição
-			error: false,
-			errors: {},
-			success: false
-		};
-	},
-	components: {
-		VForm,
-		VDatePicker,
-		VMenu,
-		VAlert
-	},
-	methods: {
-		/*submit() {
+      // variaveis de requisição
+      error: false,
+      errors: {},
+      success: false
+    };
+  },
+  components: {
+    VForm,
+    VDatePicker,
+    VMenu,
+    VAlert
+  },
+  methods: {
+    /*submit() {
 			if (this.$refs.form.validate()) {
 				//console.log(http);
 				http
@@ -126,34 +125,32 @@ export default {
 				// </ http
 			} // </ if	
 		} // </ submit*/
-		
-		register() {
-			
-			let app = this;
 
-			this.$auth.register({
-				data: {
+    register() {
+      let app = this;
 
-					nome: app.nome,
-					cpf: app.cpf,
-					email: app.email,
-					password: app.pass,
-					tipo: 'user',
-					status: 1
-				},
-				success: function()
-				{
-					app.success = true;
-				},
-				error: function(resp)
-				{
-					app.error = true;
-					app.errors = resp.response.data.errors;
-				},
-				redirect: { name: 'login'} //? redirect to home
-			})
-		}
-  	} // </ methods
+      this.$auth.register({
+        data: {
+          nome: app.nome,
+          cpf: app.cpf,
+          email: app.email,
+          password: app.pass,
+          tipo: "user",
+          status: 1
+        },
+        success: function() {
+          app.success = true;
+        },
+        error: function(resp) {
+          app.error = true;
+          app.errors = resp.response.data.errors;
+        },
+        redirect: { name: "home" }, //? redirect to home
+        autoLogin: true,
+        remenberMe: true
+      });
+    }
+  } // </ methods
 };
 </script>
 

@@ -1,19 +1,17 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from "vue";
-import VueRouter from 'vue-router';
-import axios from 'axios';
-import VueAxios from 'vue-axios';
-import App from './App.vue';
+import VueRouter from "vue-router";
+import App from "./App.vue";
+import VueResource from "vue-resource";
 // import Dashboard from './components/pages/Dashboard.vue';
-import Home from './components/pages/Home.vue';
-import Register from './components/pages/Register.vue';
-import Login from './components/pages/Login.vue';
+import Home from "./components/pages/Home.vue";
+import Register from "./components/pages/Register.vue";
+import Login from "./components/pages/Login.vue";
 
 Vue.use(VueRouter);
-Vue.use(VueAxios, axios);
-
-axios.defaults.baseURL = 'http://localhost:8000/api';
+Vue.use(VueResource);
+Vue.http.options.root = "http://localhost:8000/api";
 
 import {
 	Vuetify,
@@ -39,13 +37,22 @@ import router from "./router";
 import store from "./store";
 
 // Configuração do vue-auth
-Vue.router = router
-Vue.use(require('@websanova/vue-auth'), {
-   auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
-   http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
-   router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
+Vue.router = router;
+Vue.use(require("@websanova/vue-auth"), {
+	auth: require("@websanova/vue-auth/drivers/auth/bearer.js"),
+	http: require("@websanova/vue-auth/drivers/http/vue-resource.1.x.js"),
+	router: require("@websanova/vue-auth/drivers/router/vue-router.2.x.js"),
+	rolesVar: "tipo",
+	loginData: {
+		url: "auth/login",
+		method: "POST",
+		redirect: "/",
+		fetchUser: false
+	},
+	fetchData: { url: "auth/user", method: "GET" },
+	refreshData: { url: "auth/refresh", method: "GET", atInit: false }
 });
-App.router = Vue.router
+App.router = Vue.router;
 // END
 
 Vue.use(fontawesome);

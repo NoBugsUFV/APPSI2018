@@ -130,7 +130,7 @@ export default {
       let app = this;
 
       this.$auth.register({
-        data: {
+        body: {
           nome: app.nome,
           cpf: app.cpf,
           email: app.email,

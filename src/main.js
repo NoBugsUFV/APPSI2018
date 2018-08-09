@@ -50,7 +50,19 @@ Vue.use(require("@websanova/vue-auth"), {
 		fetchUser: false
 	},
 	fetchData: { url: "auth/user", method: "GET" },
-	refreshData: { url: "auth/refresh", method: "GET", atInit: false }
+	refreshData: {
+		url: "auth/refresh",
+		method: "GET",
+		atInit: true,
+		interval: 30
+	},
+	logoutData: {
+		url: "auth/logout",
+		method: "GET",
+		redirect: "/",
+		makeRequest: true
+	},
+	registerData: { url: "auth/register", method: "POST", redirect: "/" }
 });
 App.router = Vue.router;
 // END

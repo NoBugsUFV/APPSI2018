@@ -35,7 +35,7 @@
 			color="primary"
 			@click="login"
 		>Entrar</v-btn>
-		<router-link to='/user/register'><v-btn color="primary">Cadastrar</v-btn></router-link>
+		<router-link to='/register'><v-btn color="primary">Cadastrar</v-btn></router-link>
 	</v-form>
 </template>
 

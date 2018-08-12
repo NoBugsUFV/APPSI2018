@@ -47,12 +47,12 @@ export default {
   data() {
     return {
       form: true,
-      nome: "a",
-      cpf: "a",
-      email: "a",
-      birthday: "1999-03-06",
-      pass: "a",
-      c_pass: "a",
+      nome: "",
+      cpf: "",
+      email: "",
+      birthday: "",
+      pass: "",
+      c_pass: "",
       menu: {},
       msg: "Algo de errado não está certo",
       erroMsg: false,
@@ -71,61 +71,6 @@ export default {
     VAlert
   },
   methods: {
-    /*submit() {
-			if (this.$refs.form.validate()) {
-				//console.log(http);
-				http
-					.post("register", {
-						nome: this.nome,
-						cpf: this.cpf,
-						//birthday: ?,
-						email: this.email,
-						password: this.pass,
-
-						//metodo de usuario
-						tipo: "user",
-						status: 1 //ativo
-					})
-					.then(response => {
-						console.log(response);
-						//mudar quando mudar na api				
-						if (response.data.success) {
-
-							this.msg = 'Cadastrado com Sucesso';
-							this.okMsg = true;
-							this.erroMsg = !this.okMsg;
-
-							this.$refs.form.reset();
-							// loga automaticamente ao cadastrar
-							// a partir daqui é igual no login
-							storeToken(this.$store, response.data.data.token);
-
-							setTimeout(() => {
-								// redireciona
-								this.$router.push('/prog');
-							}, 1000);
-
-						}
-						else
-						{
-							//melhorar
-							this.msg = response.data.error.email ? response.data.error.email[0] : '';
-							this.msg += this.msg ? ' ' : '';
-							this.msg += response.data.error.cpf ? response.data.error.cpf[0] : '';
-							this.erroMsg = true;
-							this.okMsg = !this.erroMsg;
-						}
-					})
-					.catch(err => {
-						this.msg = "Internal error";
-						this.erroMsg = true;
-						this.okMsg = !this.erroMsg;
-						console.log(err);
-					});
-				// </ http
-			} // </ if	
-		} // </ submit*/
-
     register() {
       let app = this;
 
@@ -138,14 +83,41 @@ export default {
           tipo: "user",
           status: 1
         },
-        success: function() {
-          app.success = true;
+        success: response => {
+          console.log(response);
+          //mudar quando mudar na api
+          if (response.data.success) {
+            this.msg = "Cadastrado com Sucesso";
+            this.okMsg = true;
+            this.erroMsg = !this.okMsg;
+
+            this.$refs.form.reset();
+            // loga automaticamente ao cadastrar
+            // a partir daqui é igual no login
+
+            setTimeout(() => {
+              // redireciona
+              this.$router.push("/prog");
+            }, 1000);
+          } else {
+            //melhorar
+            this.msg = response.data.error.email
+              ? response.data.error.email[0]
+              : "";
+            this.msg += this.msg ? " " : "";
+            this.msg += response.data.error.cpf
+              ? response.data.error.cpf[0]
+              : "";
+            this.erroMsg = true;
+            this.okMsg = !this.erroMsg;
+          }
         },
-        error: function(resp) {
-          app.error = true;
-          app.errors = resp.response.data.errors;
+        error: err => {
+          this.msg = "Internal error";
+          this.erroMsg = true;
+          this.okMsg = !this.erroMsg;
         },
-        redirect: { name: "home" }, //? redirect to home
+        redirect: false, //? redirect to home
         autoLogin: true,
         remenberMe: true
       });

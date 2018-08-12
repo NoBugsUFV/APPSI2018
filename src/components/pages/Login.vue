@@ -55,15 +55,15 @@ export default {
     return {
       msg: "Algo de errado não está certo",
       valid: true,
-      email: "teste@teste.com",
+      email: "",
       emailRules: [
         v => !!v || "É necessário um endereco de email",
         v => /.+@.+/.test(v) || "E-mail inválido"
       ],
-      password: "1234",
+      password: "",
       passRules: [
         v => !!v || "É necessário uma senha",
-        v => v.length >= 0 || "Deve ser maior que 5 caracteres"
+        v => v.length >= 5 || "Deve ser maior que 5 caracteres"
       ],
       erroMsg: false,
       okMsg: false,
@@ -74,61 +74,7 @@ export default {
     };
   },
 
-  mounted() {
-    //console.log(this.$auth.redirect());
-    // Can set query parameter here for auth redirect or just do it silently in login redirect.
-  },
-
   methods: {
-    /*submit() {
-			if (this.$refs.form.validate()) {
-				// Native form submission is not yet supported
-				//console.log(http);
-				http
-				.post("login", {
-					email: this.email,
-					password: this.password
-				})
-				.then(response => {
-					//mudar quando mudar na api
-					if (response.data.success) {
-					this.msg = "Logado com Sucesso";
-					this.okMsg = true;
-					this.erroMsg = !this.okMsg;
-					//logged
-
-					// a partir daqui é igual no login
-					storeToken(this.$store, response.data.data.token);
-
-					setTimeout(() => {
-						// redireciona
-						this.$router.push("/prog");
-					}, 1000);
-					} else {
-					// not logged
-					this.msg = "Erro de autenticação";
-					this.erroMsg = true;
-					this.okMsg = !this.erroMsg;
-					}
-				})
-				.catch(err => {
-					if (err.response) {
-					if (err.response.status == 401) {
-						this.msg = "Erro de autenticação";
-					}
-					} else {
-					this.msg = "Internal error";
-					console.log(err);
-					}
-					this.erroMsg = true;
-					this.okMsg = !this.erroMsg;
-				});
-			}
-			},
-			clear() {
-			this.$refs.form.reset();
-		}*/
-
     login() {
       //var redirect = this.$auth.redirect();
       var app = this;
@@ -138,13 +84,37 @@ export default {
           email: app.email,
           password: app.password
         },
-        success: function(res) {
-          console.log(res);
-          console.log("loguei");
+        success: response => {
+          if (response.body.success) {
+            this.msg = "Logado com Sucesso";
+            this.okMsg = true;
+            this.erroMsg = !this.okMsg;
+            //logged
+
+            setTimeout(() => {
+              // redireciona
+              this.$router.push("/prog");
+            }, 1000);
+          } else {
+            // not logged
+            this.msg = "Erro de autenticação";
+            this.erroMsg = true;
+            this.okMsg = !this.erroMsg;
+          }
         },
-        error: function() {},
+        error: err => {
+          if (err) {
+            if (err.status == 401) {
+              this.msg = "Erro de autenticação";
+            }
+          } else {
+            this.msg = "Internal error";
+          }
+          this.erroMsg = true;
+          this.okMsg = !this.erroMsg;
+        },
         rememberMe: true,
-        redirect: { name: "home" }
+        redirect: false
       });
     }
   }

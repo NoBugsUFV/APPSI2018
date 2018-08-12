@@ -46,7 +46,6 @@ Vue.use(require("@websanova/vue-auth"), {
 	loginData: {
 		url: "auth/login",
 		method: "POST",
-		redirect: "/",
 		fetchUser: false
 	},
 	fetchData: { url: "auth/user", method: "GET" },

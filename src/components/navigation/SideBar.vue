@@ -14,7 +14,8 @@
 				<v-list-tile-content>
 					<v-list-tile-title
 						v-text="'Logout'"
-						@click="logout()"
+            v-show="$auth.check()"
+						@click="$auth.logout()"
 					></v-list-tile-title>
 				</v-list-tile-content>
 			</v-list-tile>
@@ -31,7 +32,7 @@ export default {
         {
           icon: "event",
           title: "Programação",
-          route: { name: "home" },
+          route: { name: "prog" },
           auth: () => this.$auth.check()
         },
         {
@@ -47,21 +48,12 @@ export default {
           auth: () => !this.$auth.check()
         },
         {
-          icon: "none",
           title: "Admin",
           route: { name: "admin" },
           auth: () => this.$auth.check("admin")
         }
       ]
     };
-  },
-  methods: {
-    logout() {
-      this.$auth.logout({
-        makeRequest: true,
-        redirect: "/"
-      });
-    }
   }
 };
 </script>

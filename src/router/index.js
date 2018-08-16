@@ -74,7 +74,12 @@ export default new Router({
 			component: Annotations,
 			meta: {
 				auth: true
-			},
+			}
+		},
+		{
+			path: "/notes",
+			name: "notes",
+			component: Notes,
 			children: [
 				{
 					name: "create-note",

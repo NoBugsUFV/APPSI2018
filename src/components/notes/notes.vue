@@ -7,7 +7,7 @@
     </div>
 
     <Note v-if="notes.length >= 0" :notes="notes" />
-    <Nothing v-if="notes.length == 0" mssg="Sem notas. crie uma!" />
+    <Nothing v-if="notes.length == 0" mssg="Sem notas. Crie uma!" />
     <End v-if="notes.length > 0" />
 
     <router-view name="create-note" v-title='createTitle'  />
@@ -40,6 +40,9 @@ export default {
         no = l == 0 ? "Sem notas" : l == 1 ? "1 Nota" : `${l} Notas`;
       return no;
     }
+  },
+  created() {
+    this.$store.dispatch("GET_NOTES");
   },
   components: {
     Note: Note,

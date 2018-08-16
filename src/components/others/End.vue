@@ -5,25 +5,27 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import $ from "jquery";
 
 export default {
   props: {
     mssg: {
-      default: 'Looks like you\'ve reached the end',
+      default: "Parece que você chegou ao fim :)",
       type: String
     }
   },
   methods: {
-    ToTop(){
-      $('html, body').animate({
-        scrollTop: 0
-      }, 450)
+    ToTop() {
+      $("html, body").animate(
+        {
+          scrollTop: 0
+        },
+        450
+      );
     }
   }
-}
+};
 </script>
 
 <style scoped>
-
 </style>

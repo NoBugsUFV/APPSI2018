@@ -82,6 +82,7 @@ import $ from "jquery";
 import Notify from "handy-notification";
 import Prompt from "../others/prompt.vue";
 import Overlay from "../others/overlay.vue";
+import notesDB from "../../notesDB";
 
 export default {
   data() {
@@ -109,12 +110,10 @@ export default {
     deleteNote() {
       let { $http, $route: { params }, $store: { dispatch } } = this;
 
-      //apagar nota
-      /*$http.post('/api/delete-note', { id: params.id }).then(s => {
-        dispatch('DELETE_NOTE', params.id)
-        this.Back()
-        Notify({ value: s.body.mssg })
-      })*/
+      let retorno = notesDB.del(params.id);
+      dispatch("DELETE_NOTE", params.id);
+      this.Back();
+      Notify({ value: retorno.mssg });
     },
     editNote() {
       let { $http, $route: { params }, $store: { dispatch } } = this;
@@ -124,13 +123,11 @@ export default {
         content: $(".v_n_content").text()
       };
 
-      //editar nota
-      /*$http.post('/api/edit-note', update)
-        .then(s => {
-          this._toggle("editing")
-          Notify({ value: 'Note Edited!!' })
-          dispatch('EDIT_NOTE', update)
-        })*/
+      let retorno = notesDB.set(update);
+      this._toggle("editing");
+      dispatch("EDIT_NOTE", update);
+      this.Back();
+      Notify({ value: "Note Edited!!" });
     }
   },
   created() {
@@ -139,6 +136,7 @@ export default {
     //criar notas
     /*$http.post('/api/note-details', { id }).then(s => this.note = s.body )
     $http.post('/api/valid-note', { id }).then(s => !s.body ? $router.push('/notes') : null )*/
+    this.note = notesDB.get(id);
   },
   mounted() {
     $(".v_n_cancel").focus();

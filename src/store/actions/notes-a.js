@@ -1,10 +1,11 @@
-import axios from 'axios'
+import axios from "axios";
+import notesDB from "../../notesDB";
 
 const actions = {
-  GET_NOTES: context => /*axios.post('/api/get-notes').then(s => context.commit('getNotes', s.data))*/ '', //carregar notas
-  CREATE_NOTE: (context, payload) => context.commit('createNote', payload),
-  DELETE_NOTE: (context, payload) => context.commit('deleteNote', payload),
-  EDIT_NOTE: (context, payload) => context.commit('editNote', payload)
-}
+	GET_NOTES: context => context.commit("getNotes", notesDB.getAll()),
+	CREATE_NOTE: (context, payload) => context.commit("createNote", payload),
+	DELETE_NOTE: (context, payload) => context.commit("deleteNote", payload),
+	EDIT_NOTE: (context, payload) => context.commit("editNote", payload)
+};
 
-export default actions
+export default actions;

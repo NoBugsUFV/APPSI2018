@@ -9,6 +9,10 @@ import Home from "./components/pages/Home.vue";
 import Register from "./components/pages/Register.vue";
 import Login from "./components/pages/Login.vue";
 
+// Filters & Directives
+require("./f&d/filter");
+require("./f&d/directive");
+
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.http.options.root = "http://localhost:8000/api";
@@ -28,7 +32,7 @@ import {
 	VTabs,
 	VExpansionPanel
 } from "vuetify";
-import "../node_modules/vuetify/src/stylus/app.styl";
+import "vuetify/src/stylus/app.styl";
 import "vuetify/dist/vuetify.min.css";
 
 import fontawesome from "@fortawesome/fontawesome";

@@ -40,6 +40,7 @@
 
 <script>
 import Notify from "handy-notification";
+import notesDB from "../../notesDB";
 
 export default {
   methods: {
@@ -49,18 +50,18 @@ export default {
     createNote() {
       let { title, content } = this.$refs;
       //salva nota;
-      /*this.$http
-        .post("/api/create-note", {
-          title: title.value,
-          content: content.value
-        })
-        .then(s => {
-          this.$store.dispatch("CREATE_NOTE", s.body);
-          title.value = "";
-          content.value = "";
-          this.Back();
-          Notify({ value: "Note Created!!" }); //notas
-        });*/
+      let retorno = notesDB.set({
+        title: title.value,
+        content: content.value
+      });
+      console.log("dispatch CREATE_NOTE");
+      console.log(retorno);
+      this.$store.dispatch("CREATE_NOTE", retorno);
+      console.log("continuando");
+      title.value = "";
+      content.value = "";
+      this.Back();
+      Notify({ value: "Note Created!!" }); //notas
     }
   }
 };

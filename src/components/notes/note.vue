@@ -4,7 +4,6 @@
     <router-link :to="{ name: 'view-note', params: { id: note.id } }" v-for="note in notes" :key="note.id" >
       <div class="note" >
         <div class="note_header common_header">
-          <img src='/images/vue.png' alt='' />
           <div class="note_h_left">
             <span class="note_username">Você</span>
             <span class='note_time' >{{ note.time | timeAgo }}</span>
@@ -30,9 +29,8 @@ export default {
       required: true
     }
   }
-}
+};
 </script>
 
 <style scoped>
-
 </style>

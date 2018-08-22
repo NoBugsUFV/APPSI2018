@@ -7,7 +7,8 @@ import {
 	Login,
 	Admin,
 	Register,
-	Annotations
+	Annotations,
+	Palestra
 } from "@/components/pages";
 
 import Notes from "../components/notes/notes.vue";
@@ -30,7 +31,7 @@ export default new Router({
 			name: "faq",
 			component: QandA,
 			meta: {
-				auth: true
+				auth: false
 			}
 		},
 		{
@@ -39,6 +40,14 @@ export default new Router({
 			component: Prog,
 			meta: {
 				auth: undefined
+			}
+		},
+		{
+			path: "/programacao/:id",
+			name: "programacao",
+			component: Palestra,
+			meta: {
+				auth: false
 			}
 		},
 		{
@@ -73,7 +82,7 @@ export default new Router({
 			name: "annotations",
 			component: Annotations,
 			meta: {
-				auth: true
+				auth: false
 			}
 		},
 		{

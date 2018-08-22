@@ -5,6 +5,7 @@ import Login from "./Login";
 import Admin from "./Admin";
 import Register from "./Register";
 import Annotations from "./Annotations";
+import Palestra from "./Palestra"
 
 export {
 	MainToolbar,
@@ -15,5 +16,6 @@ export {
 	Login,
 	Admin,
 	Register,
-	Annotations
+	Annotations,
+	Palestra
 };

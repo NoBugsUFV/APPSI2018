@@ -34,7 +34,7 @@ export default {
           icon: "event",
           title: "Programação",
           route: { name: "prog" },
-          auth: () => this.$auth.check()
+          auth: () => true
         },
         {
           icon: "help",
@@ -58,7 +58,7 @@ export default {
           icon: "save",
           title: "Anotações",
           route: { name: "annotations" },
-          auth: () => this.$auth.check()
+          auth: () => true
         }
       ]
     };

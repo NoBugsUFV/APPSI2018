@@ -18,7 +18,7 @@
           :id="'tab-'+dia[0].data"
         >
           <v-container>
-            <CardPrograma v-for="programa in dia" :programa="programa" :key="programa.descricao" :id="programa.descricao"/>
+            <CardPrograma v-for="programa in dia" :programa="programa" :key="programa.id" :id="programa.id+728"/>
           </v-container>
         </v-tabs-content>
       </v-tabs-items>

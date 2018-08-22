@@ -1,30 +1,20 @@
 <template>
-    <div class='container'>
-        Nada aqui
-    </div>
+    <Prog/>
 </template>
 
 <script>
 
+import Prog from './Prog'
+
 export default {
   name: "Home",
+  components: {
+    Prog
+  },
   data() {
     return {};
   },
   computed: {
-    items: function() {
-      const value = {};
-      users.on(
-        "value",
-        snapshot => {
-          console.log("entrou");
-          snapshot.forEach(e => value.push(e));
-        },
-        error => console.log(error)
-      );
-      console.log(value);
-      return value;
-    }
   }
 };
 </script>

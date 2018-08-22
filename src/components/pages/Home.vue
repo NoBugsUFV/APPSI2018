@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import { users } from "../../database";
 
 export default {
   name: "Home",

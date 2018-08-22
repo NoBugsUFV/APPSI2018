@@ -37,7 +37,7 @@ import CardPrograma from '../CardPrograma'
 import * as VTabs from 'vuetify/es5/components/VTabs'
 
 export default {
-  name: 'Prog',
+  name: "Prog",
   components: {
     ...VTabs,
     CardPrograma

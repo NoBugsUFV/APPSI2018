@@ -10,13 +10,14 @@
 					</v-list-tile-title>
 				</v-list-tile-content>
 			</v-list-tile>
-			<v-list-tile>
+      <!--Logout-->
+      <v-list-tile avatar v-show="$auth.check()" @click="$auth.logout()">
+				<v-list-tile-action>
+					<v-icon>reply</v-icon>
+				</v-list-tile-action>
 				<v-list-tile-content>
-					<v-list-tile-title
-						v-text="'Logout'"
-            v-show="$auth.check()"
-						@click="$auth.logout()"
-					></v-list-tile-title>
+					<v-list-tile-title v-text="'Logout'">
+					</v-list-tile-title>
 				</v-list-tile-content>
 			</v-list-tile>
 		</v-list>
@@ -48,9 +49,16 @@ export default {
           auth: () => !this.$auth.check()
         },
         {
-          title: "Admin",
+          icon: "lock",
+          title: "Administrador",
           route: { name: "admin" },
           auth: () => this.$auth.check("admin")
+        },
+        {
+          icon: "save",
+          title: "Anotações",
+          route: { name: "annotations" },
+          auth: () => this.$auth.check()
         }
       ]
     };

@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import TimeAgo from 'handy-timeago'
 
 // Filters
 Vue.filter('to-uppercase', value => value.charAt(0).toUpperCase() + value.substr(1) )
@@ -12,5 +11,5 @@ Vue.filter('slice', value => {
 })
 
 Vue.filter('timeAgo', value => {
-  return TimeAgo(value)
+  return value
 })

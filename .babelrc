@@ -1,9 +1,11 @@
 {
   "presets": [
     ["env", {
-      "modules": false
+      "modules": false,
+      "uglify": true
     }],
-    "stage-2"
+    "stage-2",
+    "es2015"
   ],
   "plugins": [
     "transform-runtime",
@@ -16,6 +18,6 @@
   ],
   "env": {
     "test": {
-      "presets": ["env", "stage-2"]    }
+      "presets": ["env", "stage-2","es2015" ]    }
   }
 }

@@ -79,7 +79,6 @@
 
 <script>
 import $ from "jquery";
-import Notify from "handy-notification";
 import Prompt from "../others/prompt.vue";
 import Overlay from "../others/overlay.vue";
 import notesDB from "../../notesDB";
@@ -127,12 +126,10 @@ export default {
       this._toggle("editing");
       dispatch("EDIT_NOTE", update);
       this.Back();
-      Notify({ value: "Note Edited!!" });
     }
   },
   created() {
     let { $http, $route: { params: { id } }, $router } = this;
-
     //criar notas
     /*$http.post('/api/note-details', { id }).then(s => this.note = s.body )
     $http.post('/api/valid-note', { id }).then(s => !s.body ? $router.push('/notes') : null )*/

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let api = "http://localhost:8000/api/";
+let api = "http://semanainfo.nobugs.com.br/v2/api/";
 
 const http = axios.create({
     baseURL: api

@@ -6,10 +6,9 @@ import Admin from "./Admin";
 import Register from "./Register";
 import Annotations from "./Annotations";
 import Palestra from "./Palestra"
+import Palestrante from "./Palestrante";
 
 export {
-	MainToolbar,
-	SideBar,
 	Home,
 	QandA,
 	Prog,
@@ -17,5 +16,6 @@ export {
 	Admin,
 	Register,
 	Annotations,
-	Palestra
+	Palestra,
+	Palestrante
 };

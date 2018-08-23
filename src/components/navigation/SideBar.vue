@@ -33,7 +33,7 @@ export default {
         {
           icon: "event",
           title: "Programação",
-          route: { name: "prog" },
+          route: { name: "home" },
           auth: () => true
         },
         {
@@ -42,7 +42,7 @@ export default {
           route: { name: "faq" },
           auth: () => true
         },
-        {
+       /* {
           icon: "face",
           title: "Login",
           route: { name: "login" },
@@ -57,9 +57,9 @@ export default {
         {
           icon: "save",
           title: "Anotações",
-          route: { name: "annotations" },
+          route: { name: "notes" },
           auth: () => true
-        }
+        }*/
       ]
     };
   }

@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import Notify from "handy-notification";
 import notesDB from "../../notesDB";
 
 export default {
@@ -54,14 +53,10 @@ export default {
         title: title.value,
         content: content.value
       });
-      console.log("dispatch CREATE_NOTE");
-      console.log(retorno);
       this.$store.dispatch("CREATE_NOTE", retorno);
-      console.log("continuando");
       title.value = "";
       content.value = "";
       this.Back();
-      Notify({ value: "Note Created!!" }); //notas
     }
   }
 };

@@ -8,7 +8,8 @@ import {
 	Admin,
 	Register,
 	Annotations,
-	Palestra
+	Palestra,
+	Palestrante
 } from "@/components/pages";
 
 import Notes from "../components/notes/notes.vue";
@@ -35,17 +36,17 @@ export default new Router({
 			}
 		},
 		{
-			path: "/prog",
-			name: "prog",
-			component: Prog,
-			meta: {
-				auth: undefined
-			}
-		},
-		{
 			path: "/programacao/:id",
 			name: "programacao",
 			component: Palestra,
+			meta: {
+				auth: false
+			}
+		},
+		{
+			path: "/palestrante/:id",
+			name: "palestrante",
+			component: Palestrante,
 			meta: {
 				auth: false
 			}
@@ -110,8 +111,10 @@ export default new Router({
 					path: "view-note",
 					redirect: "/notes"
 				}
+				
 			]
-		}
+		},
+		{ path: '*', redirect: '/' }
 	],
 	mode: "history"
 });

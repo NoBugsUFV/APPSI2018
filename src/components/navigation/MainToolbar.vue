@@ -1,5 +1,5 @@
 <template>
-<v-toolbar fixed app color='primary'>
+<v-toolbar dark fixed app color='primary'>
       <v-toolbar-side-icon @click="left"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title" class="title"></v-toolbar-title>
 </v-toolbar>
@@ -14,8 +14,10 @@ export default {
   data() {
     return {
       clipped: true,
-      title: "Semana de informática"
+      title: "Semana de Informática"
     }
+  },
+  mounted(){
   },
   methods: {
     left(){

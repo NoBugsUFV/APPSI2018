@@ -1,6 +1,5 @@
 <template>
-
-  <div>
+  <v-card>
     <router-link :to="{ name: 'view-note', params: { id: note.id } }" v-for="note in notes" :key="note.id" >
       <div class="note" >
         <div class="note_header common_header">
@@ -17,7 +16,7 @@
         </div>
       </div>
     </router-link>
-  </div>
+  </v-card>
 
 </template>
 
